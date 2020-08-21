@@ -1,9 +1,8 @@
 package Controller;
 
 import java.util.Scanner;
-
-import model.logic.Modelo;
 import view.View;
+import modeloLogico.Modelo;
 
 public class controlador {
 	

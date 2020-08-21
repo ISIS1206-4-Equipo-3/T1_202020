@@ -1,7 +1,6 @@
 package main;
 
-
-import controller.Controller;
+import Controller.controlador;
 
 public class Main {
 	public static void main(String[] args) 
