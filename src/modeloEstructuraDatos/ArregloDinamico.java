@@ -119,6 +119,9 @@ public class ArregloDinamico<T extends Comparable<T>> implements IArregloDinamic
 
 	public void darPeliculasDeUnDirector(String nombre) {
 		// TODO Auto-generated method stub
+		//Que retorne null si no se encuentra el director
+		// tiene que dar promedio y número de películas
+
 		
 	}
 

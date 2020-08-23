@@ -15,8 +15,6 @@ public class Modelo {
 		
 		
 		datos.darPeliculasDeUnDirector(nombre);
-		//Que retorne null si no se encuentra el director
-		// tiene que dar promedio y número de películas
 		
 		
 		return null;
