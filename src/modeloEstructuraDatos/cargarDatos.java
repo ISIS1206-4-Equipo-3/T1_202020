@@ -7,7 +7,7 @@ import com.opencsv.CSVReader;
 
 
 
-public class cargarDatos {
+public class cargarDatos <T extends Comparable<T>>{
 
     private FileReader archivoPrincipal;
     private CSVReader lectorPrincipal;
@@ -15,6 +15,8 @@ public class cargarDatos {
     private FileReader archivoSecundario;
     private CSVReader lectorSecundario;
 
+    private Object[] informaciónPrincipal;
+    
     public cargarDatos(String pRutaPrincipal, String pRutaSecundaria) {
         try {
 
@@ -23,9 +25,12 @@ public class cargarDatos {
             lectorSecundario = new CSVReader (archivoSecundario);
             lectorPrincipal = new CSVReader (archivoPrincipal);
             String [] nextline;
-
+            ArregloDinamico arregloConDatos = new ArregloDinamico<Comparable<T>>(1000);
+         
             while((nextline = lectorPrincipal.readNext())!=null) {
                 if(nextline != null) {
+                	arregloConDatos.agregar(nextline);
+                	++contadorDatos;
                     System.out.println(Arrays.deepToString(nextline));
                 }
             }

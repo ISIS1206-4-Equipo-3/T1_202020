@@ -11,7 +11,7 @@ import java.util.Scanner;
  *
  */
 
-public class ArregloDinamico<T extends Comparable<T>> implements IArregloDinamico<T> {
+public class ArregloDinamico<T extends Comparable<T>>{
 	/**
 	 * Capacidad maxima del arreglo
 	 */
@@ -62,29 +62,16 @@ public class ArregloDinamico<T extends Comparable<T>> implements IArregloDinamic
 	}
 
 	public T darElemento(int i) {
-		// TODO implementar
-		
-		
-		
-		
-		
-		
 		T elementoFinal = null;
 		Object elementoPrueba = (T)elementos[i];
 		for (int j = 0; j < elementos.length; j++) {
-			
+
 			if (elementos[j]==elementoPrueba) {
-				
+
 				elementoFinal= (T) elementoPrueba;
 				return (T) elementoFinal;
 			}
 		}
-
-
-
-
-
-
 		return (T) elementoFinal;
 	}
 
@@ -115,18 +102,7 @@ public class ArregloDinamico<T extends Comparable<T>> implements IArregloDinamic
 		tamanoAct --;
 		// TODO implementar
 		// Recomendacion: Usar el criterio de comparacion natural (metodo compareTo()) definido en Strings.
-		return (T) datoR;	}
-
-	public void darPeliculasDeUnDirector(String nombre) {
-		// TODO Auto-generated method stub
-		//Que retorne null si no se encuentra el director
-		// tiene que dar promedio y número de películas
-
-		
+		return (T) datoR;	
 	}
-
-
-
-
 
 }
