@@ -117,6 +117,11 @@ public class ArregloDinamico<T extends Comparable<T>> implements IArregloDinamic
 		// Recomendacion: Usar el criterio de comparacion natural (metodo compareTo()) definido en Strings.
 		return (T) datoR;	}
 
+	public void darPeliculasDeUnDirector(String nombre) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 
 
