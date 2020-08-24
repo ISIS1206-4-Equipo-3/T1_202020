@@ -12,7 +12,6 @@ public class cargarDatos <T extends Comparable<T>>{
 
     private FileReader archivoSecundario;
     private CSVReader lectorSecundario;
-
     private Object[] informacionPrincipal;
     
     public cargarDatos(String pRutaPrincipal, String pRutaSecundaria) {
@@ -23,20 +22,20 @@ public class cargarDatos <T extends Comparable<T>>{
             lectorSecundario = new CSVReader (archivoSecundario);
             lectorPrincipal = new CSVReader (archivoPrincipal);
             String [] nextline;
-            ArregloDinamico arregloConDatos = new ArregloDinamico<T>(2);
-            
+//            ArregloDinamico arregloConDatos = new ArregloDinamico<T>(2);
+            nextline = lectorPrincipal.readNext();
+            System.out.println(Arrays.deepToString(nextline));
             while((nextline = lectorPrincipal.readNext())!=null) {
                 if(nextline != null) {
-                	ArregloDinamico individual = new ArregloDinamico<T>(5);
-                	for(int i = 0; i<nextline.length;i++) {
-                		try {
-                			int num = Integer.parseInt(nextline[i]);
-                			individual.agregar(num);
-                		}catch(Exception e){
-                			individual.agregar(nextline[i]);
-                		}
-                	}
-                    System.out.println(Arrays.deepToString(nextline));
+//                	ArregloDinamico individual = new ArregloDinamico<T>(5);
+//                	for(int i = 0; i<nextline.length;i++) {
+//                		try {
+//                			int num = Integer.parseInt(nextline[i]);
+//                			individual.agregar(num);
+//                		}catch(Exception e){
+//                			individual.agregar(nextline[i]);
+//                		}
+//                	}
                 }
             }
 

@@ -23,7 +23,7 @@ public class ArregloDinamico<T extends Comparable<T>>{
 	/**
 	 * Arreglo de elementos de tamaNo maximo
 	 */
-	private Object elementos[ ];
+	private Object [ ]elementos;
 
 	/**
 	 * Construir un arreglo con la capacidad maxima inicial.
@@ -31,7 +31,7 @@ public class ArregloDinamico<T extends Comparable<T>>{
 	 */
 	public ArregloDinamico( int max )
 	{
-		elementos = (T[])new Object[max];
+		elementos = (T[]) new Object[max];
 		tamanoMax = max;
 		tamanoAct = 0;
 	}
@@ -104,5 +104,7 @@ public class ArregloDinamico<T extends Comparable<T>>{
 		// Recomendacion: Usar el criterio de comparacion natural (metodo compareTo()) definido en Strings.
 		return (T) datoR;	
 	}
+	
+	public cargarDatos(String )
 
 }

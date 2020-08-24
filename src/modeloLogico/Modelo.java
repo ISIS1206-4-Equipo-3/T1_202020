@@ -8,7 +8,7 @@ public class Modelo {
 	public ArregloDinamico datos;
 	
 	private final static String RUTA_DATOS_PRINCIPALES= "./data/small/MoviesCastingRaw-small.csv";
-	private final static String RUTA_DATOS_SECUNDARIOS= "./data/small/Small/MoviesCastingRaw-small.CSV";
+	private final static String RUTA_DATOS_SECUNDARIOS= "./data/small/SmallMoviesDetailsCleaned.csv";
 	
 	
 	public Modelo () {
@@ -16,9 +16,7 @@ public class Modelo {
 	}
 
 	public Integer darPeliculasDeUnDirector(String nombre) {
-		
-		cargarDatos CargarDatos = new cargarDatos<Comparable<T>>("./data/small/MoviesCastingRaw-small.csv", "./data/small/MoviesCastingRaw-small.csv")
-		
+		cargarDatos CargarDatos = new cargarDatos(RUTA_DATOS_PRINCIPALES, RUTA_DATOS_SECUNDARIOS);
 		return null;
 	}
 

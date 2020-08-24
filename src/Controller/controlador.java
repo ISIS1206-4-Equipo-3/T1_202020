@@ -4,7 +4,7 @@ import java.util.Scanner;
 import view.View;
 import modeloLogico.Modelo;
 
-public class controlador <T extends Comparable<T>>{
+public class controlador {
 
 	/* Instancia del Modelo*/
 	private Modelo modelo;
