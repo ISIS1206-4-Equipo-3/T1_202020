@@ -43,7 +43,7 @@ public class controlador {
 			else
 			{
 				view.printMessage("Director no encontrado");
-			}						
+			}							
 			break;
 			}
 		}

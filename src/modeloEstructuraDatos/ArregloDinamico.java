@@ -1,7 +1,11 @@
 package modeloEstructuraDatos;
 
 
+import java.io.FileReader;
+import java.util.Arrays;
 import java.util.Scanner;
+
+import com.opencsv.CSVReader;
 
 /**
  * 2019-01-23
@@ -12,99 +16,158 @@ import java.util.Scanner;
  */
 
 public class ArregloDinamico<T extends Comparable<T>>{
+	
+	private final static int COLUMNA_DIRECTORES = 12;
+	private final static int COLUMNA_CALIFICACIONES = 35;
 	/**
 	 * Capacidad maxima del arreglo
 	 */
-	private int tamanoMax;
+	private int tamanoMaxFilas;
 	/**
 	 * Numero de elementos presentes en el arreglo (de forma compacta desde la posicion 0)
 	 */
-	private int tamanoAct;
+	private int tamanoActFilas;
 	/**
 	 * Arreglo de elementos de tamaNo maximo
 	 */
-	private Object [ ]elementos;
+	private Object [][]elementos;
+
+	private int tamanoActColumnas;
+	private int tamanoMaxColumnas;
 
 	/**
 	 * Construir un arreglo con la capacidad maxima inicial.
 	 * @param max Capacidad maxima inicial
 	 */
-	public ArregloDinamico( int max )
+	public ArregloDinamico( int maxColumnas, int maxFilas)
 	{
-		elementos = (T[]) new Object[max];
-		tamanoMax = max;
-		tamanoAct = 0;
+		elementos = new Object[maxColumnas][maxFilas];
+		tamanoMaxFilas = maxFilas;
+		tamanoMaxColumnas = maxColumnas;
+		tamanoActFilas = 0;
+		tamanoActColumnas = 0;
 	}
 
-	public void agregar( T dato )
+	public void agregar( T dato, int numeroColumna, int numeroFila)
 	{
-		if ( tamanoAct == tamanoMax )
+		if ( tamanoMaxFilas<=numeroFila )
 		{  // caso de arreglo lleno (aumentar tamaNo)
-			tamanoMax = 2 * tamanoMax;
-			Object [ ] copia = elementos;
-			elementos = (T[]) new Object[tamanoMax];
-			for ( int i = 0; i < tamanoAct; i++)
+			tamanoMaxFilas = 2 * tamanoMaxFilas;
+			Object [][] copia = elementos;
+			elementos = new Object[tamanoMaxColumnas][tamanoMaxFilas];
+			for ( int i = 0; i < tamanoActFilas; i++)
 			{
-				elementos[i] = (T)copia[i];
+				for (int j= 0; j<tamanoActColumnas;j++)
+					elementos[j][i] = copia[j][i];
 			} 
-			System.out.println("Arreglo lleno: " + tamanoAct + " - Arreglo duplicado: " + tamanoMax);
-		}	
-		elementos[tamanoAct] = (T)dato;
-		tamanoAct++;
-	}
-
-	public int darCapacidad() {
-		return tamanoMax;
-	}
-
-	public int darTamano() {
-		return tamanoAct;
-	}
-
-	public T darElemento(int i) {
-		T elementoFinal = null;
-		Object elementoPrueba = (T)elementos[i];
-		for (int j = 0; j < elementos.length; j++) {
-
-			if (elementos[j]==elementoPrueba) {
-
-				elementoFinal= (T) elementoPrueba;
-				return (T) elementoFinal;
-			}
+			System.out.println("Arreglo filas lleno: " + numeroFila + " - Arreglo filas duplicado: " + tamanoMaxFilas);
 		}
-		return (T) elementoFinal;
-	}
-
-	public T buscar(T dato) {
-		T datoR = null;
-		for (int i = 0; i < elementos.length; i++) {
-			if(elementos[i]==dato)
+		if ( tamanoMaxColumnas<=numeroColumna )
+		{  // caso de arreglo lleno (aumentar tamaNo)
+			tamanoMaxColumnas = 2 * tamanoMaxColumnas;
+			Object [][] copia = elementos;
+			elementos = new Object[tamanoMaxColumnas][tamanoMaxFilas];
+			for ( int i = 0; i < tamanoActFilas; i++)
 			{
-				datoR = dato;
-			}
-
+				for (int j= 0; j<tamanoActColumnas;j++)
+					elementos[j][i] = copia[j][i];
+			} 
+			System.out.println("Arreglo columnas lleno: " + numeroColumna + " - Arreglo columnas duplicado: " + tamanoMaxColumnas);
 		}
-		// TODO implementar
-		// Recomendacion: Usar el criterio de comparacion natural (metodo compareTo()) definido en Strings.
-		return datoR;
+
+		elementos[numeroColumna][numeroFila] = (T)dato;
+		if(numeroFila>=tamanoActFilas) tamanoActFilas = numeroFila+1;
+		if(numeroColumna>=tamanoActColumnas) tamanoActColumnas = numeroColumna+1;
 	}
 
-	public T eliminar(Integer dato) {
-		Integer datoR = null;
-		for (int i = 0; i < elementos.length; i++) {
-			if(elementos[i].equals(dato))
-			{
-				elementos[i]=elementos[i+1];
-				datoR = dato;
-			}
 
-		}
-		tamanoAct --;
-		// TODO implementar
-		// Recomendacion: Usar el criterio de comparacion natural (metodo compareTo()) definido en Strings.
-		return (T) datoR;	
+	public int darTamanoFilas() {
+		return tamanoActFilas;
 	}
 	
-	public cargarDatos(String )
+
+	public int darTamanoColumnas() {
+		return tamanoActColumnas;
+	}
+	
+	public T buscarFila(T dato, int pFila) {
+		T datoR = null;
+		for (int i = 0; i < tamanoActColumnas; i++) {
+			if(elementos[i][pFila].equals(dato))
+			{
+				datoR = dato;
+			}
+
+		}
+		return datoR;
+	}
+	
+	public T buscarColumna(T dato, int pColumna) {
+		T datoR = null;
+		for (int i = 0; i < tamanoActFilas; i++) {
+			if(elementos[pColumna][i].equals(dato))
+			{
+				datoR = dato;
+			}
+
+		}
+		return datoR;
+	}
+	
+	private String buscarContieneColumna(String dato, int pColumna) {
+		String datoR = "";
+		for (int i = 0; i < tamanoActFilas; i++) {
+			if(elementos[pColumna][i].toString().contains(dato))
+			{
+				datoR += elementos[pColumna][i] + "/n";
+			}
+
+		}
+		if(datoR.isBlank()) datoR = "No hay coincidencias con :" + dato +"\n";
+		return datoR;
+	}
+	
+	private String buscarContieneFila(String dato, int pFila) {
+		String datoR = "";
+		for (int i = 0; i < tamanoActColumnas; i++) {
+			if(elementos[i][pFila].toString().contains(dato))
+			{
+				datoR += elementos[i][pFila] + "\n";
+			}
+
+		}
+		if(datoR.isBlank()) datoR = "No hay coincidencias con :" + dato +"\n";
+		return datoR;
+	}
+	
+	public int darIdFila(int numFila) {
+		return (Integer)elementos[0][numFila];
+		
+	}
+	
+	public Object darElementoEn (int numColumna, int numFila) {
+		return elementos[numColumna][numFila];
+	}
+	
+	public String darBuenasPeliculasDeUnDirector(String pNombre) {
+		String rta = null;
+		boolean existeDirector = false;
+		int contadorBuenasPeliculas=0;
+		int sumatoriaCalificaciones=0;
+		for(int i=0; i<tamanoActFilas;i++) {
+			if(pNombre.equals(elementos[COLUMNA_DIRECTORES][i])) {
+				if(Double.parseDouble((String)elementos[COLUMNA_DIRECTORES][i])>=6.0) {
+					sumatoriaCalificaciones+=Double.parseDouble((String)elementos[COLUMNA_DIRECTORES][i]);
+					++contadorBuenasPeliculas;
+				}
+			existeDirector=true;
+			}
+		} 
+		double promediodeVotacion = 0;
+		if(contadorBuenasPeliculas!=0)promediodeVotacion = sumatoriaCalificaciones/contadorBuenasPeliculas;
+		if(existeDirector) rta = "El director "+pNombre+" tiene "+ contadorBuenasPeliculas+" peliculas buenas o\n" + 
+				"con votación positiva.\n" + "El promedio de votacion de estas peliculas es de " + promediodeVotacion;
+		return rta;
+	}
 
 }
