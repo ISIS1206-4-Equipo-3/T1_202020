@@ -1,1 +1,7 @@
 /bin/
+
+*.csv
+
+data/.DS_Store
+
+.DS_Store

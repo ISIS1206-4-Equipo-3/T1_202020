@@ -5,8 +5,6 @@ import java.util.Arrays;
 
 import com.opencsv.CSVReader;
 
-
-
 public class cargarDatos <T extends Comparable<T>>{
 
     private FileReader archivoPrincipal;
@@ -15,7 +13,7 @@ public class cargarDatos <T extends Comparable<T>>{
     private FileReader archivoSecundario;
     private CSVReader lectorSecundario;
 
-    private Object[] informaciónPrincipal;
+    private Object[] informacionPrincipal;
     
     public cargarDatos(String pRutaPrincipal, String pRutaSecundaria) {
         try {
@@ -25,12 +23,19 @@ public class cargarDatos <T extends Comparable<T>>{
             lectorSecundario = new CSVReader (archivoSecundario);
             lectorPrincipal = new CSVReader (archivoPrincipal);
             String [] nextline;
-            ArregloDinamico arregloConDatos = new ArregloDinamico<Comparable<T>>(1000);
-         
+            ArregloDinamico arregloConDatos = new ArregloDinamico<T>(2);
+            
             while((nextline = lectorPrincipal.readNext())!=null) {
                 if(nextline != null) {
-                	arregloConDatos.agregar(nextline);
-                	++contadorDatos;
+                	ArregloDinamico individual = new ArregloDinamico<T>(5);
+                	for(int i = 0; i<nextline.length;i++) {
+                		try {
+                			int num = Integer.parseInt(nextline[i]);
+                			individual.agregar(num);
+                		}catch(Exception e){
+                			individual.agregar(nextline[i]);
+                		}
+                	}
                     System.out.println(Arrays.deepToString(nextline));
                 }
             }
