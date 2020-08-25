@@ -29,11 +29,11 @@ public class controlador {
 		{
 			view.printMenu();
 
-			int opcion = lectura.nextInt();
+			int opcion = Integer.parseInt(lectura.nextLine());
 			switch(opcion) {
 			case 1:
 			view.printMessage(" \n Encontrar peliculas buenas de un director \n Dar nombre del director: ");
-			String director_name = lectura.next();
+			String director_name = lectura.nextLine();
 			rta = modelo.darPeliculasDeUnDirector(director_name);
 			if ( rta != null)
 			{
