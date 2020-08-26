@@ -1,11 +1,11 @@
 # T1_202020
 Taller 1
 
-Alejandro Alcaraz Cardona 201921767
+Alejandro Alcaraz Cardona - 201921767
 
-Alejandro Ahogado P - 201920701
+Alejandro Ahogado Prieto - 201920701
 
-Andres Santiago Triana 201923265
+Andres Santiago Triana - 201923265
 
 # Instrucciones para cargar los datos del programa
 OPCION 1:

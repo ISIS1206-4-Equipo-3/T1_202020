@@ -183,7 +183,7 @@ public class ArregloDinamico<T extends Comparable<T>>{
 					}
 					++contadorBuenasPeliculas;
 					datos +="\n Pelicula " + contadorBuenasPeliculas + "\n >ID: " + elementos[COLUMNA_ID][i] + "\n >Titulo: " + elementos[COLUMNA_TITULO][i] + "\n >Genero(s): " + elementos[COLUMNA_GENERO][i] + 
-							"\n >Fecha de lanzamiento: " + elementos[COLUMNA_RELEASE_DATE][i] + "\n >actores: " + actores + "\n";
+							"\n >Fecha de lanzamiento: " + elementos[COLUMNA_RELEASE_DATE][i] + "\n >Actores: " + actores + "\n";
 					sumatoriaCalificaciones+=Double.parseDouble((String)elementos[COLUMNA_CALIFICACIONES][i]);
 
 				}

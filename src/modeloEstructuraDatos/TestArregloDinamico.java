@@ -2,9 +2,10 @@ package modeloEstructuraDatos;
 
 import modeloEstructuraDatos.ArregloDinamico;
 
+import modeloLogico.Modelo;
 import static org.junit.Assert.*;
 
-import org.junit.Test;
+import org.junit.*;
 
 public class TestArregloDinamico {
 
@@ -13,65 +14,92 @@ public class TestArregloDinamico {
 	private static int TAMANOF=1;
 	private static int TAMANOC=2   ;
 
+	private Modelo modelo;
+	
 	public void setUp1() {
 		arreglo= new ArregloDinamico(TAMANOC, TAMANOF);
 	}
-
+	public void setUp2()
+	{
+		modelo = new Modelo();
+	}
 
 	@Test
 	public void testArregloDinamico() {
-		
+		setUp1();
+		assertEquals(0, arreglo.darTamanoColumnas());
+		assertEquals(0, arreglo.darTamanoFilas());
 	}
 
 	@Test
 	public void testAgregar() {
-		assertTrue(arreglo!=null);
-		arreglo.agregar(dato, numeroColumna, numeroFila);
 
+		setUp1();
+		String dato = "prueba";
+		arreglo.agregar(dato, 0, 0);
+		assertNotNull("No se agrego el elemento",arreglo.darElementoEn(0, 0));
 
 		int tamaño = arreglo.darTamanoColumnas();
-		assertEquals(3,tamaño);
+		assertEquals("No indico el aumento del numero de columnas actuales", 1,tamaño);
 		int tamaño2 = arreglo.darTamanoFilas();
-		assertEquals(2,tamaño);
+		assertEquals("No indico el aumento del numero de filas actuales",1,tamaño2);
 	}
 
 	@Test
 	public void testDarTamanoFilas() {
-		assertTrue(arreglo!=null);
+		setUp1();
+		Integer dato = 0;
+		arreglo.agregar(dato, 0, 0);
 		int tamaño = arreglo.darTamanoFilas();
 		assertEquals(1,tamaño);
 	}
 
 	@Test
 	public void testDarTamanoColumnas() {
-		assertTrue(arreglo!=null);
+		setUp1();
+		Integer dato = 0;
+		arreglo.agregar(dato, 0, 0);
 		int tamaño = arreglo.darTamanoColumnas();
-		assertEquals(2,tamaño);
+		assertEquals(1,tamaño);
 	}
 
 	@Test
 	public void testBuscarFila() {
-		assertTrue(arreglo!=null);
+		setUp1();
+		String datoAgregado = "hello";
+		arreglo.agregar(datoAgregado, 0, 0);
+		assertEquals("hello", arreglo.buscarFila(datoAgregado, 0));
 	}
 
 	@Test
 	public void testBuscarColumna() {
-		assertTrue(arreglo!=null);
+		setUp1();
+		String datoAgregado = "hello";
+		arreglo.agregar(datoAgregado, 0, 0);
+		assertEquals("hello", arreglo.buscarColumna(datoAgregado, 0));
 	}
 
 	@Test
 	public void testDarIdFila() {
-		assertTrue(arreglo!=null);
+		setUp1();
+		Integer datoAgregado = 2;
+		arreglo.agregar(datoAgregado, 0, 0);
+		assertEquals(2, arreglo.darIdFila(0));
 	}
 
 	@Test
 	public void testDarElementoEn() {
+		setUp1();
+		String datoAgregado = "Elemento";
+		arreglo.agregar(datoAgregado, 0, 0);
+		assertEquals(datoAgregado, arreglo.darElementoEn(0, 0));
 		assertTrue(arreglo!=null);
 	}
 
 	@Test
 	public void testDarBuenasPeliculasDeUnDirector() {
-		assertTrue(arreglo!=null);
+		setUp2();
+		assertNotNull(modelo.darPeliculasDeUnDirector("George Lucas"));
 	}
 
 }
