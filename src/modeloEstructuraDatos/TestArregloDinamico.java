@@ -11,7 +11,7 @@ public class TestArregloDinamico {
 	private ArregloDinamico arreglo;
 
 	private static int TAMANOF=1;
-	private static int TAMANOC=2;
+	private static int TAMANOC=2   ;
 
 	public void setUp1() {
 		arreglo= new ArregloDinamico(TAMANOC, TAMANOF);
