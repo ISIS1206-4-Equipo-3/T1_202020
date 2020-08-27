@@ -39,10 +39,10 @@ public class TestArregloDinamico {
 		arreglo.agregar(dato, 0, 0);
 		assertNotNull("No se agrego el elemento",arreglo.darElementoEn(0, 0));
 
-		int tamaño = arreglo.darTamanoColumnas();
-		assertEquals("No indico el aumento del numero de columnas actuales", 1,tamaño);
-		int tamaño2 = arreglo.darTamanoFilas();
-		assertEquals("No indico el aumento del numero de filas actuales",1,tamaño2);
+		int tamano = arreglo.darTamanoColumnas();
+		assertEquals("No indico el aumento del numero de columnas actuales", 1,tamano);
+		int tamano2 = arreglo.darTamanoFilas();
+		assertEquals("No indico el aumento del numero de filas actuales",1,tamano2);
 	}
 
 	@Test
@@ -50,8 +50,8 @@ public class TestArregloDinamico {
 		setUp1();
 		Integer dato = 0;
 		arreglo.agregar(dato, 0, 0);
-		int tamaño = arreglo.darTamanoFilas();
-		assertEquals(1,tamaño);
+		int tamano = arreglo.darTamanoFilas();
+		assertEquals(1,tamano);
 	}
 
 	@Test
@@ -59,8 +59,8 @@ public class TestArregloDinamico {
 		setUp1();
 		Integer dato = 0;
 		arreglo.agregar(dato, 0, 0);
-		int tamaño = arreglo.darTamanoColumnas();
-		assertEquals(1,tamaño);
+		int tamano = arreglo.darTamanoColumnas();
+		assertEquals(1,tamano);
 	}
 
 	@Test
